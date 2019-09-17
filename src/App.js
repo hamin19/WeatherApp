@@ -8,8 +8,13 @@ import { Grid, Row, Col } from "react-flexbox-grid";
 import LocationList from "./components/LocationList";
 import "./App.css";
 import ForecastExtended from "./components/ForecastExtended";
+import { createStore } from "redux";
 
 const cities = ["Cali,col", "Bogotá,col", "Buenos Aires,ar", "London,uk"];
+
+//Creación del store
+const store = createStore(() => {},
+window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 class App extends Component {
   constructor() {
@@ -20,6 +25,9 @@ class App extends Component {
   handleSelectedLocation = city => {
     this.setState({ city });
     console.log(`handleSelectedLocation ${city}`);
+
+    const action = { type: "setCity", value: city };
+    store.dispatch(action);
   };
 
   render() {
