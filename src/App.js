@@ -14,14 +14,16 @@ const cities = ["Cali,col", "Bogotá,col", "Buenos Aires,ar", "London,uk"];
 class App extends Component {
   constructor() {
     super();
-    this.state = { city: "Nueva ciudad" };
+    this.state = { city: null };
   }
 
   handleSelectedLocation = city => {
+    this.setState({ city });
     console.log(`handleSelectedLocation ${city}`);
   };
 
   render() {
+    const { city } = this.state;
     return (
       <Grid>
         <Row>
@@ -43,7 +45,7 @@ class App extends Component {
           <Col xs={12} md={6}>
             <Paper elevation={4}>
               <div className="detail">
-                <ForecastExtended city={this.state.city} />
+                {city && <ForecastExtended city={city} />}
               </div>
             </Paper>
           </Col>
